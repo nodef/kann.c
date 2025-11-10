@@ -15,8 +15,8 @@ echo 400958 737471 | ./examples/rnn-bit -Ai add.kan -
 KANN is a standalone and lightweight library in C for constructing and training
 small to medium artificial neural networks such as [multi-layer
 perceptrons][mlp], [convolutional neural networks][cnn] and [recurrent neural
-networks][rnn] (including [LSTM][lstm] and [GRU][gru]). It implements
-graph-based reverse-mode [automatic differentiation][ad] and allows to build
+networks][rnn] (including [LSTM][lstm] and [GRU][gru]), by [Attractive Chaos](https://github.com/attractivechaos).
+It implements graph-based reverse-mode [automatic differentiation][ad] and allows to build
 topologically complex neural networks with recurrence, shared weights and
 multiple inputs/outputs/costs. In comparison to mainstream deep learning
 frameworks such as [TensorFlow][tf], KANN is not as scalable, but it is close
@@ -54,13 +54,29 @@ neural networks in C/C++, to deploy no-so-large models without worrying about
 
 ## Installation
 
-The KANN library is composed of four files: `kautodiff.{h,c}` and `kann.{h,c}`.
-You are encouraged to include these files in your source code tree. No
-installation is needed. To compile examples:
-```sh
-make
+Run:
+```bash
+$ npm i kann.c
 ```
-This generates a few executables in the [examples](examples) directory.
+
+And then include `kann.h` as follows:
+```c
+#include "node_modules/kann.c/kann.h"
+#include "node_modules/kann.c/kann_extra/kann_data.h"  // For data loading utilities
+```
+
+You may also want to include `kann.c` as follows:
+```c
+#ifndef __KANN_C__
+#define __KANN_C__
+#include "node_modules/kann.c/kann.c"
+#include "node_modules/kann.c/kautodiff.c"  						// For automatic differentiation
+#include "node_modules/kann.c/kann_extra/kann_data.c"   // For data loading utilities
+#endif
+```
+
+This will include both the function declaration and their definitions into a single file.
+
 
 ## Documentations
 
@@ -233,3 +249,10 @@ int main(void)
 [tf]: https://www.tensorflow.org
 [td]: https://github.com/tiny-dnn/tiny-dnn
 [matmul]: https://github.com/attractivechaos/matmul
+
+<br>
+<br>
+
+
+[![ORG](https://img.shields.io/badge/org-nodef-green?logo=Org)](https://nodef.github.io)
+![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/kann.c)
